@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5400/railways
+    username: postgres
+    password: postgres
+
+  jpa:
+    generate-ddl: true
+    hibernate.ddl-auto: update
+
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: never
+    include-exception: false
+
