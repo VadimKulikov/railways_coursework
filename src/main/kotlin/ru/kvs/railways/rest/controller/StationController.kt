@@ -1,5 +1,6 @@
 package ru.kvs.railways.rest.controller
 
+import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -24,6 +25,9 @@ class StationController(
 ) {
 
     @PostMapping
+    @Operation(
+        description = "Сохранение станции"
+    )
     fun save(
         @RequestBody
         station: StationDTO
@@ -34,12 +38,18 @@ class StationController(
     )
 
     @GetMapping("/{stationId}")
+    @Operation(
+        description = "Поиск станции по идентификатору"
+    )
     fun find(
         @PathVariable
         stationId: Long
     ) = stationService.find(stationId)
 
     @DeleteMapping("/{stationId}")
+    @Operation(
+        description = "Удаление станции"
+    )
     fun delete(
         @PathVariable
         stationId: Long
@@ -49,6 +59,9 @@ class StationController(
     }
 
     @PutMapping("/{stationId}")
+    @Operation(
+        description = "Обновление информации о станции"
+    )
     fun update(
         @PathVariable
         stationId: Long,

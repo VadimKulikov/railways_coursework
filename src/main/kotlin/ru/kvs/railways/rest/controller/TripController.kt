@@ -1,5 +1,6 @@
 package ru.kvs.railways.rest.controller
 
+import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -23,6 +24,9 @@ class TripController(
 ) {
 
     @PostMapping
+    @Operation(
+        description = "Создание рейса"
+    )
     fun save(
         @RequestBody
         trip: TripDTO
@@ -31,8 +35,11 @@ class TripController(
     )
 
     @GetMapping("/{tripId}/schedule")
+    @Operation(
+        description = "Получение расписания рейса по идентификатору"
+    )
     fun getTripSchedule(
         @PathVariable
-        tripId: Int
+        tripId: Long
     ) = tripService.getSchedule(tripId)
 }

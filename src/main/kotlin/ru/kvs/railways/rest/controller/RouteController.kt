@@ -1,5 +1,6 @@
 package ru.kvs.railways.rest.controller
 
+import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -23,6 +24,9 @@ class RouteController(
 ) {
 
     @PostMapping
+    @Operation(
+        description = "Сохранение маршрута"
+    )
     fun save(
         @RequestBody
         routeDto: RouteDTO
@@ -31,6 +35,9 @@ class RouteController(
     )
 
     @GetMapping("/{routeId}")
+    @Operation(
+        description = "Поиск маршрута"
+    )
     fun find(
         @PathVariable
         routeId: Long

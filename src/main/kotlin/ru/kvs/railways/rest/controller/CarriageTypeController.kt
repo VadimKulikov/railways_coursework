@@ -1,5 +1,6 @@
 package ru.kvs.railways.rest.controller
 
+import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -24,6 +25,9 @@ class CarriageTypeController(
 ) {
 
     @PostMapping
+    @Operation(
+        description = "Создание типа вагона и его планировки"
+    )
     fun save(
         @RequestBody carriageType: CarriageTypeDTO
     ): CarriageType {

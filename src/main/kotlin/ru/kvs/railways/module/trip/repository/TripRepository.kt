@@ -7,12 +7,12 @@ import ru.kvs.railways.model.trip.ScheduleProjection
 import ru.kvs.railways.model.trip.Trip
 
 @Repository
-interface TripRepository : JpaRepository<Trip, Int> {
+interface TripRepository : JpaRepository<Trip, Long> {
     @Query(
         """
         SELECT * FROM get_schedule(?1);
         """,
         nativeQuery = true
     )
-    fun getSchedule(tripId: Int): List<ScheduleProjection>
+    fun getSchedule(tripId: Long): List<ScheduleProjection>
 }

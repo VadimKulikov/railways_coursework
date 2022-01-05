@@ -36,12 +36,18 @@ class PassengerController(
     )
 
     @GetMapping("/{passengerId}")
+    @Operation(
+        description = "Поиск пассажира по идентификатору"
+    )
     fun find(
         @PathVariable
         passengerId: Long
     ): Passenger = passengerService.find(passengerId)
 
     @DeleteMapping("/{passengerId}")
+    @Operation(
+        description = "Удаление пассажира"
+    )
     fun delete(
         @PathVariable
         passengerId: Long
@@ -51,6 +57,9 @@ class PassengerController(
     }
 
     @PutMapping("/{passengerId}")
+    @Operation(
+        description = "Обновление информации о пассажире"
+    )
     fun update(
         @RequestBody
         passenger: PassengerDTO,

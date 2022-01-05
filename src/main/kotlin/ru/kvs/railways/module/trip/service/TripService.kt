@@ -9,9 +9,9 @@ import ru.kvs.railways.module.trip.repository.TripRepository
 class TripService(
     private val tripRepository: TripRepository
 ) {
-    fun save(trip: Trip) = tripRepository.save(trip)
+    fun save(trip: Trip): Trip = tripRepository.save(trip)
 
-    fun getSchedule(tripId: Int): List<Schedule>? {
+    fun getSchedule(tripId: Long): List<Schedule>? {
         return tripRepository.getSchedule(tripId).map {
             Schedule(
                 it.getName(),
@@ -21,6 +21,6 @@ class TripService(
         }
     }
 
-    fun find(tripId: Int): Trip = tripRepository.findById(tripId)
+    fun find(tripId: Long): Trip = tripRepository.findById(tripId)
         .orElseThrow { RuntimeException("Рейс с идентификатором $tripId не найден") }
 }

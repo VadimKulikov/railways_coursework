@@ -18,7 +18,7 @@ data class Trip(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int = 0,
+    val id: Long = 0,
 
     @OneToOne
     val train: Train? = null,

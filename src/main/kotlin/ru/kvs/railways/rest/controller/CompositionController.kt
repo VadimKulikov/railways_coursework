@@ -1,5 +1,6 @@
 package ru.kvs.railways.rest.controller
 
+import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -24,6 +25,9 @@ class CompositionController(
 ) {
 
     @PostMapping
+    @Operation(
+        description = "Сохранение состава"
+    )
     fun save(
         @RequestBody
         composition: CompositionDTO
@@ -36,5 +40,8 @@ class CompositionController(
     )
 
     @DeleteMapping("/{compositionId}")
+    @Operation(
+        description = "Удаление состава"
+    )
     fun delete(@PathVariable compositionId: Int) = compositionService.delete(compositionId)
 }
