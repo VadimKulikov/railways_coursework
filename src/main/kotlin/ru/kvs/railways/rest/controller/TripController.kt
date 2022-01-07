@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import ru.kvs.railways.module.trip.service.TripService
+import ru.kvs.railways.rest.dto.PeriodicTripDTO
 import ru.kvs.railways.rest.dto.TripDTO
 import ru.kvs.railways.rest.mapper.TripMapper
 
@@ -33,6 +34,17 @@ class TripController(
     ) = tripService.save(
         tripMapper.map(trip)
     )
+
+    @PostMapping("/periodic")
+    @Operation(
+        description = "Создание периодических рейсов до определенной даты"
+    )
+    fun createPeriodicTrips(
+        @RequestBody
+        periodicTrip: PeriodicTripDTO
+    ) {
+        tripService.createPeriodicTrips(periodicTrip)
+    }
 
     @GetMapping("/{tripId}/schedule")
     @Operation(

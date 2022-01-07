@@ -6,6 +6,8 @@ import ru.kvs.railways.model.seat.Seat
 import ru.kvs.railways.model.station.Station
 import ru.kvs.railways.model.trip.Trip
 import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
@@ -43,5 +45,8 @@ data class Ticket(
     @OneToOne
     val seat: Seat,
 
-    val cost: Long
+    val cost: Long = 0,
+
+    @Enumerated(EnumType.STRING)
+    val ticketStatus: TicketStatus = TicketStatus.CREATED
 )

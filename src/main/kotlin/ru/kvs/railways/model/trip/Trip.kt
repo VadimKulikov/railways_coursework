@@ -4,6 +4,8 @@ import ru.kvs.railways.model.route.Route
 import ru.kvs.railways.model.train.Train
 import java.time.LocalDateTime
 import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
@@ -27,5 +29,8 @@ data class Trip(
     @JoinColumn(name = "route_id")
     val route: Route? = null,
 
-    val departureTime: LocalDateTime = LocalDateTime.now()
+    val departureTime: LocalDateTime = LocalDateTime.now(),
+
+    @Enumerated(EnumType.STRING)
+    val tripStatus: TripStatus = TripStatus.SCHEDULED
 )

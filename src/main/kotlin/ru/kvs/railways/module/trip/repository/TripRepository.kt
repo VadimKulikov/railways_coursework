@@ -15,4 +15,12 @@ interface TripRepository : JpaRepository<Trip, Long> {
         nativeQuery = true
     )
     fun getSchedule(tripId: Long): List<ScheduleProjection>
+
+    @Query(
+        """
+        SELECT * FROM create_periodic_trip(?1);
+        """,
+        nativeQuery = true
+    )
+    fun createPeriodicTrip(trip: String): List<Trip>
 }
