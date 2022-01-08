@@ -24,6 +24,7 @@ class TicketMapper(
         trip = tripService.find(dto.tripId),
         carriage = carriageService.find(dto.carriageId),
         seat = seatService.find(dto.seatId),
-        cost = dto.cost
+        cost = dto.cost,
+        purchaseDate = dto.purchaseDate
     )
 }

@@ -5,6 +5,7 @@ import ru.kvs.railways.model.passenger.Passenger
 import ru.kvs.railways.model.seat.Seat
 import ru.kvs.railways.model.station.Station
 import ru.kvs.railways.model.trip.Trip
+import java.time.LocalDateTime
 import javax.persistence.Entity
 import javax.persistence.EnumType
 import javax.persistence.Enumerated
@@ -48,5 +49,7 @@ data class Ticket(
     val cost: Long = 0,
 
     @Enumerated(EnumType.STRING)
-    val ticketStatus: TicketStatus = TicketStatus.CREATED
+    var ticketStatus: TicketStatus = TicketStatus.CREATED,
+
+    val purchaseDate: LocalDateTime = LocalDateTime.now()
 )

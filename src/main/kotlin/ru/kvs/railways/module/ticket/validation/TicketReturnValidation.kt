@@ -4,11 +4,11 @@ import javax.validation.Constraint
 import javax.validation.Payload
 import kotlin.reflect.KClass
 
-@Target(AnnotationTarget.CLASS)
+@Target(AnnotationTarget.VALUE_PARAMETER)
 @Retention(AnnotationRetention.RUNTIME)
-@Constraint(validatedBy = [TripValidator::class])
-annotation class TripValidation(
-    val message: String = "Данный рейс уже ушел, покупка билетов невозможна",
+@Constraint(validatedBy = [TicketReturnValidator::class])
+annotation class TicketReturnValidation(
+    val message: String = "Билет можно вернуть как минимум за день до отправления",
     val groups: Array<KClass<*>> = [],
     val payload: Array<KClass<out Payload>> = []
 )
