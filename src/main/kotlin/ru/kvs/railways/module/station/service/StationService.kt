@@ -8,7 +8,9 @@ import ru.kvs.railways.module.station.repository.StationRepository
 class StationService(
     private val stationRepository: StationRepository
 ) {
-    fun save(station: Station) = stationRepository.save(station)
+    fun saveAll(stations: List<Station>): MutableList<Station> = stationRepository.saveAll(stations)
+
+    fun save(station: Station): Station = stationRepository.save(station)
 
     fun find(stationId: Long): Station = stationRepository.findById(stationId).orElseThrow {
             RuntimeException("Станция с идентификатором $stationId не найдена")

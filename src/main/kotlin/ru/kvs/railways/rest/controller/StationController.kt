@@ -26,15 +26,17 @@ class StationController(
 
     @PostMapping
     @Operation(
-        description = "Сохранение станции"
+        description = "Сохранение станций"
     )
     fun save(
         @RequestBody
-        station: StationDTO
-    ) = stationService.save(
-        Station(
-            name = station.name
-        )
+        stations: List<StationDTO>
+    ): MutableList<Station> = stationService.saveAll(
+        stations.map {
+            Station(
+                name = it.name
+            )
+        }
     )
 
     @GetMapping("/{stationId}")

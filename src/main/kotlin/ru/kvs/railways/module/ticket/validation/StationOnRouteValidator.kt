@@ -18,6 +18,17 @@ class StationOnRouteValidator(
 
         val names = trip.route?.stations?.map { it.stationName }
 
-        return names?.containsAll(listOf(stationFrom, stationTo)) ?: false
+        return if (!names?.containsAll(listOf(stationFrom, stationTo))!!) false
+        else {
+            val schedule = tripService.getSchedule(trip.id)
+
+            val stationFromArrivalTime = schedule.find { it.stationName == stationFrom }
+                ?.arrivalTime!!
+
+            val stationToArrivalTime = schedule.find { it.stationName == stationTo }
+                ?.arrivalTime!!
+
+            !stationFromArrivalTime.isAfter(stationToArrivalTime)
+        }
     }
 }

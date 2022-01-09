@@ -14,7 +14,7 @@ class TripService(
 ) {
     fun save(trip: Trip): Trip = tripRepository.save(trip)
 
-    fun getSchedule(tripId: Long): List<Schedule>? {
+    fun getSchedule(tripId: Long): List<Schedule> {
         return tripRepository.getSchedule(tripId).map {
             Schedule(
                 it.getName(),
