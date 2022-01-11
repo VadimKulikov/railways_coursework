@@ -18,6 +18,7 @@ class RouteService(
         routeRepository.getPopularRoutes(month, year, amount).map {
             PopularRoute(
                 routeId = it.getRouteId(),
+                name = it.getName(),
                 ticketsSold = it.getTicketsSold()
             )
         }

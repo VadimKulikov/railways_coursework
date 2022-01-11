@@ -27,7 +27,7 @@ class TicketAvailableValidator(
             val ticketLastStation = routeStations?.find { it.stationName == ticketLastStationName }
             val newTicketFirstStation = routeStations?.find { it.stationName == newTicketFirstStationName }
 
-            ticketLastStation?.arrivalPeriod?.hours!! <= newTicketFirstStation?.arrivalPeriod?.hours!!
+            ticketLastStation?.arrivalPeriod!! <= newTicketFirstStation?.arrivalPeriod!!
         } else true
     }
 }

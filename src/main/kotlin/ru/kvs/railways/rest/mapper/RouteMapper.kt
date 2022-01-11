@@ -12,14 +12,18 @@ class RouteMapper(
 ) {
 
     fun map(routeDto: RouteDTO): Route {
-        return Route(
-            stations = routeDto.stations.map {
+        val stations = routeDto.stations.sortedBy { it.arrivalPeriod }
+            .map {
                 RouteStation(
                     stationName = stationService.find(it.stationId).name,
                     arrivalPeriod = it.arrivalPeriod,
                     stop = it.stop
                 )
             }
+
+        return Route(
+            stations = stations,
+            name = "${stations.first().stationName} - ${stations.last().stationName}"
         )
     }
 }

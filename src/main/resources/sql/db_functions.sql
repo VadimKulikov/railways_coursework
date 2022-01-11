@@ -75,19 +75,22 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION get_popular_routes(month int, YEAR int, amount int)
 RETURNS TABLE(
 	routeid bigint,
+	name varchar,
 	ticketssold int
 ) AS
 $$
 	SELECT
 		trip.route_id,
+		route.name,
 		count(ticket.id) tickets_sold
 	FROM t_trip trip
 	JOIN t_ticket ticket ON trip.id = ticket.trip_id
+	JOIN t_route route ON trip.route_id = route.id
 	WHERE
 		date_part('month', trip.departure_time) = $1
 		AND
 		date_part('year', trip.departure_time) = $2
-	GROUP BY trip.route_id
+	GROUP BY trip.route_id, route.name
 	ORDER BY tickets_sold DESC
 	LIMIT $3
 $$ LANGUAGE SQL;

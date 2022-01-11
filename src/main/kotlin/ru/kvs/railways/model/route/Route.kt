@@ -22,5 +22,7 @@ data class Route(
 
     @Type(type = "jsonb")
     @Column(name = "stations", columnDefinition = "jsonb")
-    val stations: List<RouteStation> = arrayListOf()
+    val stations: List<RouteStation> = arrayListOf(),
+
+    val name: String = ""
 )
