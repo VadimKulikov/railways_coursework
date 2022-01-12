@@ -8,7 +8,7 @@ import ru.kvs.railways.module.passenger.repository.PassengerRepository
 class PassengerService(
     private val passengerRepository: PassengerRepository
 ) {
-    fun save(passenger: Passenger) = passengerRepository.save(passenger)
+    fun save(passenger: Passenger): Passenger = passengerRepository.save(passenger)
 
     fun find(passengerId: Long): Passenger =
         passengerRepository.findById(passengerId).orElseThrow {

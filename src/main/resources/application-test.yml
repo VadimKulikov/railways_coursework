@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5400/railways_test
+    username: postgres
+    password: postgres
+
+  jpa:
+    generate-ddl: true
+    hibernate.ddl-auto: update

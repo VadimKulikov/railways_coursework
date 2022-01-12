@@ -1,5 +1,6 @@
 package ru.kvs.railways.module.ticket.validation
 
+import org.springframework.stereotype.Component
 import ru.kvs.railways.module.station.service.StationService
 import ru.kvs.railways.module.trip.service.TripService
 import ru.kvs.railways.rest.dto.TicketDTO
@@ -8,6 +9,7 @@ import java.time.LocalDateTime
 import javax.validation.ConstraintValidator
 import javax.validation.ConstraintValidatorContext
 
+@Component
 class TripValidator(
     private val tripService: TripService,
     private val stationService: StationService

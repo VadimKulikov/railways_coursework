@@ -9,6 +9,9 @@ plugins {
 
     // Detekt
     id("io.gitlab.arturbosch.detekt").version("1.19.0")
+
+    // Kover
+    id("org.jetbrains.kotlinx.kover") version "0.5.0-RC"
 }
 
 group = "ru.kvs"

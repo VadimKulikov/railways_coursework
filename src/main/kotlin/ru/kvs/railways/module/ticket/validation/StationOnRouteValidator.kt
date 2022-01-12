@@ -1,11 +1,13 @@
 package ru.kvs.railways.module.ticket.validation
 
+import org.springframework.stereotype.Component
 import ru.kvs.railways.module.station.service.StationService
 import ru.kvs.railways.module.trip.service.TripService
 import ru.kvs.railways.rest.dto.TicketDTO
 import javax.validation.ConstraintValidator
 import javax.validation.ConstraintValidatorContext
 
+@Component
 class StationOnRouteValidator(
     private val stationService: StationService,
     private val tripService: TripService
@@ -28,7 +30,7 @@ class StationOnRouteValidator(
             val stationToArrivalTime = schedule.find { it.stationName == stationTo }
                 ?.arrivalTime!!
 
-            !stationFromArrivalTime.isAfter(stationToArrivalTime)
+            stationToArrivalTime.isAfter(stationFromArrivalTime)
         }
     }
 }
