@@ -7,6 +7,9 @@ import ru.kvs.railways.rest.dto.TicketDTO
 import javax.validation.ConstraintValidator
 import javax.validation.ConstraintValidatorContext
 
+/**
+ * Валидатор определяющий занято место или нет
+ */
 class TicketAvailableValidator(
     private val ticketService: TicketService,
     private val stationService: StationService

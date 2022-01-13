@@ -16,4 +16,8 @@ class CarriageTypeService(
     fun find(typeId: Int): CarriageType? = carriageTypeRepository.findById(typeId).orElseThrow {
         RuntimeException("Тип вагона с идентификатором $typeId не найден")
     }
+
+    fun delete(typeId: Int) {
+        carriageTypeRepository.deleteById(typeId)
+    }
 }

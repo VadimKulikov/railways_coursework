@@ -15,6 +15,6 @@ data class Station(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
-    @Column(length = 100)
+    @Column(length = 100, unique = true)
     val name: String = ""
 )

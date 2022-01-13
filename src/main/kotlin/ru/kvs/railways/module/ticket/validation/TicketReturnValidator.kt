@@ -8,11 +8,17 @@ import java.time.temporal.ChronoUnit
 import javax.validation.ConstraintValidator
 import javax.validation.ConstraintValidatorContext
 
+/**
+ * Валидатор для проверки возврата билета
+ */
 @Component
 class TicketReturnValidator(
     private val ticketService: TicketService,
     private val tripService: TripService
 ) : ConstraintValidator<TicketReturnValidation, Long> {
+    companion object {
+        private const val MIN_DAYS_TO_RETURN_TICKET = 1L
+    }
 
     override fun isValid(value: Long, context: ConstraintValidatorContext?): Boolean {
         val ticket = ticketService.find(value)
@@ -21,6 +27,6 @@ class TicketReturnValidator(
         val currentDate = LocalDateTime.now()
 
         return schedule?.arrivalTime?.isAfter(currentDate)!! &&
-                ChronoUnit.DAYS.between(currentDate, schedule.arrivalTime) >= 1L
+                ChronoUnit.DAYS.between(currentDate, schedule.arrivalTime) >= MIN_DAYS_TO_RETURN_TICKET
     }
 }

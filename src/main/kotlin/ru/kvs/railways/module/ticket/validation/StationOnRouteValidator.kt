@@ -7,6 +7,10 @@ import ru.kvs.railways.rest.dto.TicketDTO
 import javax.validation.ConstraintValidator
 import javax.validation.ConstraintValidatorContext
 
+/**
+ * Валидатор, проверяющий что станции находятся на пути следования маршрута,
+ * а также указаны в правильной последовательности
+ */
 @Component
 class StationOnRouteValidator(
     private val stationService: StationService,

@@ -12,6 +12,7 @@ import ru.kvs.railways.module.trip.service.TripService
 import ru.kvs.railways.rest.dto.PeriodicTripDTO
 import ru.kvs.railways.rest.dto.TripDTO
 import ru.kvs.railways.rest.mapper.TripMapper
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("api/trip")
@@ -29,6 +30,7 @@ class TripController(
         description = "Создание рейса"
     )
     fun save(
+        @Valid
         @RequestBody
         trip: TripDTO
     ) = tripService.save(

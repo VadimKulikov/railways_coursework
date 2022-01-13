@@ -15,13 +15,14 @@ class TripService(
     fun save(trip: Trip): Trip = tripRepository.save(trip)
 
     fun getSchedule(tripId: Long): List<Schedule> {
-        return tripRepository.getSchedule(tripId).map {
+        val result = tripRepository.getSchedule(tripId).map {
             Schedule(
                 it.getName(),
                 it.getArrivalTime(),
                 it.getDepartureTime()
             )
         }
+        return result.ifEmpty { throw RuntimeException("Раcписание рейса с идентификатором $tripId не найдено") }
     }
 
     fun find(tripId: Long): Trip = tripRepository.findById(tripId)
@@ -32,4 +33,6 @@ class TripService(
             objectMapper.writeValueAsString(periodicTrip)
         )
     }
+
+    fun findLast(trainId: Int): Trip? = tripRepository.findLastByTrainId(trainId)
 }
