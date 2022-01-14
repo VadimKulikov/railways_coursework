@@ -41,4 +41,17 @@ class ExceptionHandlerController : ResponseEntityExceptionHandler() {
             )
         )
     }
+
+    @ExceptionHandler(Exception::class)
+    fun handleAnyException(
+        ex: Exception
+    ): ResponseEntity<ErrorMessage> {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+            ErrorMessage(
+                timestamp = LocalDateTime.now(),
+                status = HttpStatus.BAD_REQUEST,
+                message = ex.message ?: ""
+            )
+        )
+    }
 }

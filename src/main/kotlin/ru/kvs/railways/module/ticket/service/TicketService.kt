@@ -11,7 +11,15 @@ class TicketService(
     private val ticketRepository: TicketRepository
 ) {
     fun save(ticket: Ticket): Ticket = ticketRepository.save(ticket)
-    fun find(seatId: SeatId) = ticketRepository.findLastBySeatIdOrderByPurchaseDate(seatId)
+    fun find(tripId: Long, seatId: SeatId, ticketStatus: TicketStatus, carriageId: Int) =
+        ticketRepository.findFirstBySeatIdAndTicketStatusOrderByPurchaseDateDesc(
+            tripId,
+            seatId.carriageType.id,
+            seatId.seatNumber,
+            carriageId,
+            ticketStatus.name
+        )
+
     fun find(ticketId: Long): Ticket = ticketRepository.findById(ticketId)
         .orElseThrow { RuntimeException("Билет с идентификатором $ticketId не найден") }
 

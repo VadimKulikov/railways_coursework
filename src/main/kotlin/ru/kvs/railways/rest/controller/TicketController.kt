@@ -1,5 +1,6 @@
 package ru.kvs.railways.rest.controller
 
+import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -27,6 +28,9 @@ class TicketController(
     private val ticketMapper: TicketMapper
 ) {
     @PostMapping
+    @Operation(
+        description = "Покупка билета"
+    )
     fun save(
         @Valid
         @RequestBody
@@ -36,6 +40,9 @@ class TicketController(
     )
 
     @DeleteMapping("/{ticketId}")
+    @Operation(
+        description = "Вернуть билет"
+    )
     fun returnTicket(
         @TicketReturnValidation
         @PathVariable

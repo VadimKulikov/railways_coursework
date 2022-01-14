@@ -1,6 +1,7 @@
 package ru.kvs.railways.module.ticket.validation
 
 import ru.kvs.railways.model.ticket.Ticket
+import ru.kvs.railways.model.ticket.TicketStatus
 import ru.kvs.railways.module.station.service.StationService
 import ru.kvs.railways.module.ticket.service.TicketService
 import ru.kvs.railways.rest.dto.TicketDTO
@@ -15,7 +16,7 @@ class TicketAvailableValidator(
     private val stationService: StationService
 ) : ConstraintValidator<TicketAvailableValidation, TicketDTO> {
     override fun isValid(value: TicketDTO, context: ConstraintValidatorContext?): Boolean {
-        val existingTicket = ticketService.find(value.seatId)
+        val existingTicket = ticketService.find(value.tripId, value.seatId, TicketStatus.CREATED, value.carriageId)
         return if (existingTicket == null) true
         else seatIsAvailable(existingTicket, value)
     }
